@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | EcoLoop - Access Your Ecosystem</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="font-['Roboto'] antialiased bg-white text-gray-900">
+    <div class="flex min-h-screen">
+      <div
+        class="flex flex-col justify-center flex-1 px-8 py-12 md:px-24 lg:flex-none lg:w-[500px] xl:w-[600px]"
+      >
+        <div class="w-full max-w-sm mx-auto">
+          <a href="index.html" class="flex items-center gap-3 mb-12 group">
+            <img src="logo.png" alt="EcoLoop" class="h-20 w-auto" />
+            <span class="font-bold text-2xl tracking-tight text-gray-900"
+              >EcoLoop</span
+            >
+          </a>
+
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+            Welcome back
+          </h2>
+          <p class="mt-3 text-lg text-gray-500 font-light">Let's keep it up!</p>
+
+          <div class="mt-10">
+            <form action="#" method="POST" class="space-y-6">
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-bold text-gray-700 uppercase tracking-wider"
+                  >Email Address</label
+                >
+                <div class="mt-2">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    required
+                    class="block w-full px-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none transition-all text-lg"
+                    placeholder="Email Address"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between">
+                  <label
+                    for="password"
+                    class="block text-sm font-bold text-gray-700 uppercase tracking-wider"
+                    >Password</label
+                  >
+                  <div class="text-sm">
+                    <a
+                      href="#"
+                      class="font-medium text-blue-600 hover:text-blue-500"
+                      >Forgot password?</a
+                    >
+                  </div>
+                </div>
+                <div class="mt-2">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    class="block w-full px-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-600 focus:bg-white focus:outline-none transition-all text-lg"
+                    placeholder="••••••••"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  class="flex justify-center w-full px-10 py-5 text-lg font-bold text-white bg-gray-900 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all shadow-xl shadow-gray-200"
+                >
+                  Sign In
+                </button>
+              </div>
+            </form>
+
+            <p class="mt-10 text-center text-gray-500">
+              New to the ecosystem?
+              <a href="#" class="font-bold text-blue-600 hover:text-blue-500"
+                >Create an account</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative flex-1 hidden lg:block overflow-hidden">
+        <img
+          src="hero.png"
+          alt="EcoLoop Portal"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+
+        <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-[2px]"></div>
+
+        <div
+          class="relative flex flex-col items-center justify-center h-full p-20 text-center text-white"
+        >
+          <div class="max-w-md">
+            <h3 class="text-4xl font-bold mb-6 leading-tight">
+              Every action counts.
+            </h3>
+
+            <p class="text-white/80 text-xl font-light leading-relaxed">
+              "EcoLoop isn't just a platform; it's your contribution to a global
+              circular future."
+            </p>
+          </div>
+        </div>
+
+        <div class="absolute bottom-10 left-0 right-0 text-center">
+          <span
+            class="text-xs font-bold uppercase tracking-[0.3em] text-white/60"
+            >© 2026 EcoLoop Global</span
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
