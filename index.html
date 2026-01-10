@@ -6,19 +6,154 @@
     <title>EcoLoop - Turn Waste into Worth</title>
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      /* Smooth transitions for the modal */
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.5s;
+      }
+      .fade-enter-from,
+      .fade-leave-to {
+        opacity: 0;
+      }
+    </style>
   </head>
-  <body class="font-['Roboto'] antialiased bg-white text-gray-900">
+  <body
+    class="font-['Roboto'] antialiased bg-white text-gray-900"
+    x-data="{ showModal: true, step: 1 }"
+  >
+    <div
+      x-show="showModal"
+      class="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300"
+      style="display: none"
+    >
+      <div
+        class="bg-white w-full max-w-lg h-[520px] rounded-[2.5rem] shadow-2xl overflow-hidden border border-gray-100 flex flex-col relative mx-4"
+      >
+        <div
+          class="bg-black py-10 flex flex-col items-center justify-center shrink-0"
+        >
+          <div class="bg-white p-3 rounded-xl shadow-lg mb-3">
+            <svg
+              class="w-8 h-8 text-black"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+              ></path>
+            </svg>
+          </div>
+          <h1 class="text-white text-2xl font-black tracking-tight">
+            WELCOME DEAR JUDGES
+          </h1>
+          <p
+            class="text-gray-400 text-xs font-bold uppercase tracking-[0.2em] mt-1"
+          >
+            EcoLoop Presentation
+          </p>
+        </div>
+
+        <div class="p-10 flex flex-col flex-grow text-center justify-between">
+          <div x-show="step === 1" class="space-y-4">
+            <h2 class="text-2xl font-black text-black uppercase tracking-tight">
+              The Problem
+            </h2>
+            <p class="text-gray-500 text-base leading-relaxed">
+              Rwanda lacks e-waste infrastructure. Toxic chemicals leak
+              into water tables, threatening public health and hydropower
+              potential.
+            </p>
+          </div>
+
+          <div x-show="step === 2" class="space-y-4" style="display: none">
+            <h2 class="text-2xl font-black text-black uppercase tracking-tight">
+              Our Solution
+            </h2>
+            <p class="text-gray-500 text-base leading-relaxed">
+              A <strong>"Phygital"</strong> ecosystem. We use
+              <strong>AI Vision</strong> to identify parts and
+              <strong>IoT Sensors</strong> to detect toxic gas before
+              handling.
+            </p>
+          </div>
+
+          <div x-show="step === 3" class="space-y-4" style="display: none">
+            <h2 class="text-2xl font-black text-black uppercase tracking-tight">
+              The Impact
+            </h2>
+            <p class="text-gray-500 text-base leading-relaxed">
+              Aligned with <strong>NST2/Vision 2050</strong>. We
+              recover critical metals and empower youth through a
+              circular economy.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex justify-center gap-2">
+              <div
+                class="h-1.5 rounded-full transition-all"
+                :class="step === 1 ? 'w-8 bg-black' : 'w-2 bg-gray-200'"
+              ></div>
+              <div
+                class="h-1.5 rounded-full transition-all"
+                :class="step === 2 ? 'w-8 bg-black' : 'w-2 bg-gray-200'"
+              ></div>
+              <div
+                class="h-1.5 rounded-full transition-all"
+                :class="step === 3 ? 'w-8 bg-black' : 'w-2 bg-gray-200'"
+              ></div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <template x-if="step < 3">
+                <button
+                  @click="step++"
+                  class="w-full py-4 bg-black text-white font-black rounded-2xl hover:bg-gray-800 transition shadow-lg uppercase tracking-widest text-sm"
+                >
+                  Next
+                </button>
+              </template>
+              <template x-if="step === 3">
+                <button
+                  @click="showModal = false"
+                  class="w-full py-4 bg-black text-white font-black rounded-2xl hover:scale-[1.02] transition shadow-lg uppercase tracking-widest text-sm"
+                >
+                  Enter Landing Page
+                </button>
+              </template>
+              <button
+                x-show="step > 1"
+                @click="step--"
+                class="text-xs font-bold text-gray-400 hover:text-black uppercase tracking-widest transition"
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav
-      class="w-full bg-white/90 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50"
+      class="w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-40"
     >
       <div
         class="max-w-7xl mx-auto px-6 flex justify-between items-center h-24"
       >
         <div class="flex items-center gap-3">
-          <img src="logo.png" alt="EcoLoop logo" class="h-20 w-auto" />
+          <img src="logo.png" alt="EcoLoop logo" class="h-16 w-auto" />
           <span class="font-bold text-2xl tracking-tight text-gray-900"
             >EcoLoop</span
           >
@@ -27,62 +162,80 @@
         <div class="hidden md:flex items-center gap-10">
           <a
             href="index.html"
-            class="relative text-lg font-semibold text-blue-600 pb-1 after:absolute after:left-0 after:-bottom-[30px] after:h-[3px] after:w-full after:bg-blue-600"
+            class="relative text-lg font-bold text-gray-900 pb-1 after:absolute after:left-0 after:-bottom-[30px] after:h-[3px] after:w-full after:bg-gray-900"
             >Home</a
           >
           <a
             href="about-us.html"
-            class="text-lg font-medium text-gray-500 hover:text-blue-600 transition-colors"
+            class="text-lg font-medium text-gray-500 hover:text-gray-900 transition-colors"
             >About Us</a
           >
           <a
             href="pricing.html"
-            class="text-lg font-medium text-gray-500 hover:text-blue-600 transition-colors"
+            class="text-lg font-medium text-gray-500 hover:text-gray-900 transition-colors"
             >Pricing</a
           >
           <a
             href="contact-us.html"
-            class="text-lg font-medium text-gray-500 hover:text-blue-600 transition-colors"
+            class="text-lg font-medium text-gray-500 hover:text-gray-900 transition-colors"
             >Contact Us</a
           >
         </div>
 
         <div class="hidden lg:block">
           <a
-            href="login.html"
-            class="bg-blue-600 text-white px-8 py-3 rounded-full text-base font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200"
+            href="https://ecolooprwanda.base44.app"
+            target="_blank"
+            class="bg-gray-900 text-white px-8 py-3 rounded-full text-base font-bold hover:bg-black transition shadow-lg hover:shadow-gray-400"
           >
-            Get Started
+            Launch App
           </a>
         </div>
       </div>
     </nav>
 
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section
+      class="relative min-h-[90vh] flex items-center overflow-hidden bg-white"
+    >
       <div
         class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 items-center relative z-20"
       >
         <div class="py-12 lg:py-24">
+          <span
+            class="inline-block px-4 py-1 rounded-full bg-gray-100 text-gray-900 border border-gray-200 text-xs font-bold uppercase tracking-widest mb-6"
+          >
+            Project: EcoLoop
+          </span>
           <h1
             class="text-5xl lg:text-8xl font-bold text-gray-900 leading-[1.05] tracking-tight"
           >
             Discover Wastes' <br />
-            <span class="text-blue-600">Worth</span>
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-gray-700 to-black"
+              >Worth.</span
+            >
           </h1>
           <p
             class="mt-8 text-xl lg:text-2xl text-gray-500 leading-relaxed max-w-xl font-light"
           >
-            EcoLoop transforms environmental management into a financial
-            ecosystem through AI-driven IoT technology designed for the modern
-            world.
+            Rwanda's first student-built <strong>"Phygital"</strong> ecosystem.
+            We combine AI software with embedded hardware to close the resource
+            loop and maximize user safety.
           </p>
 
-          <div class="mt-12">
+          <div class="mt-12 flex gap-4">
             <a
-              href="login.html"
-              class="bg-gray-900 text-white font-bold px-10 py-5 rounded-full hover:bg-blue-600 transition-all transform hover:-translate-y-1 shadow-2xl inline-block"
+              href="https://ecolooprwanda.base44.app"
+              target="_blank"
+              class="bg-gray-900 text-white font-bold px-10 py-5 rounded-full hover:bg-black transition-all transform hover:-translate-y-1 shadow-2xl inline-block"
             >
-              Explore Marketplace
+              Start Recycling
+            </a>
+            <a
+              href="#solutions"
+              class="px-10 py-5 rounded-full border-2 border-gray-200 font-bold text-gray-900 hover:border-gray-900 transition-colors"
+            >
+              How it Works
             </a>
           </div>
         </div>
@@ -91,41 +244,41 @@
         class="absolute inset-y-0 right-0 w-full md:w-[55%] pointer-events-none"
       >
         <div
-          class="absolute inset-0 bg-gradient-to-l from-blue-50/40 via-transparent to-transparent"
+          class="absolute inset-0 bg-gradient-to-l from-white via-transparent to-transparent"
         ></div>
         <img
           src="hero.png"
-          alt="EcoLoop Luxury Concept"
-          class="h-full w-full object-contain object-right"
+          alt="EcoLoop Hardware and App"
+          class="h-full w-full object-contain object-right opacity-90"
         />
       </div>
     </section>
 
-    <section class="py-32 bg-gray-50/50">
+    <section id="solutions" class="py-32 bg-gray-50">
       <div class="max-w-7xl mx-auto px-6">
         <div
           class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6"
         >
           <div class="max-w-2xl">
             <h2 class="text-5xl font-bold text-gray-900 tracking-tight">
-              Advanced Circular Solutions
+              The EcoLoop Ecosystem
             </h2>
             <p class="text-gray-600 mt-6 text-xl font-normal">
-              Revolutionizing waste management with high-precision artificial
-              intelligence.
+              Solving the "Knowledge Gap" for students, technicians, and scrap
+              collectors[cite: 12].
             </p>
           </div>
           <div
-            class="h-[1px] flex-grow bg-gray-200 hidden md:block ml-10 mb-4"
+            class="h-[1px] flex-grow bg-gray-300 hidden md:block ml-10 mb-4"
           ></div>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div
-            class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 group"
+            class="p-10 rounded-[2.5rem] bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500 group"
           >
             <div
-              class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 transition-colors duration-500"
+              class="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-gray-900 transition-colors duration-500"
             >
               <img
                 src="AI.png"
@@ -134,19 +287,20 @@
               />
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4">
-              Advanced AI Recognition
+              AI Component Recognition
             </h3>
-            <p class="text-gray-600 text-lg leading-relaxed font-medium">
-              We provide AI-based app capable of Multi Waste Detection with a
-              high accuracy score and able to name and classify wastes properly.
+            <p class="text-gray-600 text-lg leading-relaxed font-light">
+              Uses YOLO/TensorFlow to detect multiple parts in a single photo
+              with a professional confidence score (e.g., "Capacitor,
+              87%")[cite: 16, 17].
             </p>
           </div>
 
           <div
-            class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 group"
+            class="p-10 rounded-[2.5rem] bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500 group"
           >
             <div
-              class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 transition-colors duration-500"
+              class="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-gray-900 transition-colors duration-500"
             >
               <img
                 src="warning-shield.png"
@@ -155,19 +309,20 @@
               />
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4">
-              Strong Safety Measures
+              Smart Safety Scanner
             </h3>
-            <p class="text-gray-600 text-lg leading-relaxed font-medium">
-              We immediately send alerts in case of hazardous wastes and provide
-              step by step ways to disassemble any electronic device safely.
+            <p class="text-gray-600 text-lg leading-relaxed font-light">
+              Embedded MQ Series Gas Sensors detect toxic fumes and chemical
+              leaks before you touch the waste, providing a critical health
+              safeguard[cite: 34, 35].
             </p>
           </div>
 
           <div
-            class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 group"
+            class="p-10 rounded-[2.5rem] bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500 group"
           >
             <div
-              class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 transition-colors duration-500"
+              class="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-gray-900 transition-colors duration-500"
             >
               <img
                 src="credit-card.png"
@@ -178,64 +333,67 @@
             <h3 class="text-2xl font-bold text-gray-900 mb-4">
               Smart Valuation
             </h3>
-            <p class="text-gray-600 text-lg leading-relaxed font-medium">
-              Our smart valuation system provides real-time market prices, while
-              our marketplace connects users with professional buyers.
+            <p class="text-gray-600 text-lg leading-relaxed font-light">
+              Gen-AI Dual-Path Guidance offers real-time pricing for copper/gold
+              scrap and "Innovation Path" upcycling blueprints[cite: 24, 25].
             </p>
           </div>
 
           <div
-            class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 group"
+            class="p-10 rounded-[2.5rem] bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500 group"
           >
             <div
-              class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 transition-colors duration-500"
+              class="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-gray-900 transition-colors duration-500"
             >
               <img
                 src="games.png"
-                alt="Game"
+                alt="Hardware"
                 class="w-10 h-10 group-hover:invert group-hover:brightness-0"
               />
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Gamification</h3>
-            <p class="text-gray-600 text-lg leading-relaxed font-medium">
-              Earn reward points and badges on the Eco-Hero leaderboard while
-              learning about circular economy and energy dependencies.
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              The "Eco-Check"
+            </h3>
+            <p class="text-gray-600 text-lg leading-relaxed font-light">
+              A handheld tool using conductivity sensors to test liquid waste
+              purity and verify recycled metal quality for solar
+              industries[cite: 31, 32].
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-12 bg-white border-y border-gray-50">
+    <section class="py-12 bg-white border-y border-gray-100">
       <div class="max-w-7xl mx-auto px-6 text-center">
         <p
           class="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-12"
         >
-          Strategic Global Partnerships
+          Aligned with National Vision
         </p>
 
         <div
-          class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+          class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 hover:opacity-100 transition-all duration-300"
         >
           <img
             src="reb.png"
-            alt="Partner 1 Logo"
-            class="h-20 w-auto object-contain"
+            alt="Partner 1"
+            class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition"
           />
           <img
             src="coat.svg"
-            alt="Partner 2 Logo"
-            class="h-20 w-auto object-contain"
+            alt="Partner 2"
+            class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition"
           />
           <img
             src="Rema.png"
-            alt="Partner 3 Logo"
-            class="h-20 w-auto object-contain"
+            alt="Partner 3"
+            class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition"
           />
           <img
             src="RSA_2021.webp"
-            alt="Partner 4 Logo"
-            class="h-20 w-auto object-contain"
+            alt="Partner 4"
+            class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition"
           />
         </div>
       </div>
@@ -250,61 +408,93 @@
             class="text-4xl md:text-5xl font-bold text-gray-900 mb-10 leading-tight"
           >
             Advancing Global Goals Through
-            <span class="text-blue-600">Local Impact.</span>
+            <span class="text-gray-900 border-b-4 border-gray-900"
+              >Local Innovation.</span
+            >
           </h2>
           <div class="grid sm:grid-cols-2 gap-12">
             <div class="group">
               <div
-                class="h-px w-12 bg-blue-600 mb-6 group-hover:w-full transition-all duration-700"
+                class="h-px w-12 bg-gray-900 mb-6 group-hover:w-full transition-all duration-700"
               ></div>
               <h4 class="text-lg font-bold text-gray-900 mb-3">
-                SDG Framework
+                Vision 2050 & NST2
               </h4>
               <p class="text-gray-500 font-light">
-                Addressing Goals 11 & 12 by turning waste data into actionable
-                climate progress.
+                Supporting ICT-driven innovation and strengthening the Green
+                Economy sector in Rwanda.
               </p>
             </div>
             <div class="group">
               <div
-                class="h-px w-12 bg-blue-600 mb-6 group-hover:w-full transition-all duration-700"
+                class="h-px w-12 bg-gray-900 mb-6 group-hover:w-full transition-all duration-700"
               ></div>
-              <h4 class="text-lg font-bold text-gray-900 mb-3">NST2 Vision</h4>
+              <h4 class="text-lg font-bold text-gray-900 mb-3">Target SDGs</h4>
               <p class="text-gray-500 font-light">
-                Supporting national strategy by digitizing the circular economy.
+                Directly impacting SDG 7 (Clean Energy), SDG 12 (Responsible
+                Consumption), and SDG 6 (Clean Water) [cite: 58-60].
               </p>
             </div>
           </div>
         </div>
+
         <div
-          class="lg:col-span-5 bg-white rounded-[3rem] p-10 md:p-14 text-gray-900 relative overflow-hidden shadow-2xl border border-gray-100"
+          class="lg:col-span-5 bg-white rounded-[3rem] p-10 md:p-14 text-gray-900 relative overflow-hidden shadow-2xl border-2 border-gray-900"
         >
           <div
-            class="absolute -right-20 -bottom-20 w-64 h-64 bg-blue-50 rounded-full blur-[100px] opacity-80"
+            class="absolute inset-0 opacity-5"
+            style="
+              background-image: radial-gradient(#000 1px, transparent 1px);
+              background-size: 20px 20px;
+            "
           ></div>
-          <h3 class="text-3xl font-bold font-serif leading-snug relative z-10">
-            "Decentralizing the value of waste for every household in the
-            nation."
+
+          <h3
+            class="text-3xl font-bold font-serif leading-snug relative z-10 mb-8"
+          >
+            "Transforming waste from a hazard into a harvest." [cite: 63]
           </h3>
+
+          <div class="space-y-4 relative z-10">
+            <div
+              class="flex items-center justify-between border-b border-gray-100 pb-2"
+            >
+              <span class="text-sm font-bold uppercase text-gray-500"
+                >Resource Recovery</span
+              >
+              <span class="text-xl font-bold">250kg/yr</span>
+            </div>
+            <div
+              class="flex items-center justify-between border-b border-gray-100 pb-2"
+            >
+              <span class="text-sm font-bold uppercase text-gray-500"
+                >Toxic Runoff</span
+              >
+              <span class="text-xl font-bold text-green-600">-40%</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="py-24 bg-blue-50/20">
+    <section class="py-24 bg-gray-50">
       <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-12">Trusted by the Industry</h2>
+        <h2 class="text-3xl font-bold mb-12">The Impact</h2>
         <div
           class="p-12 bg-white rounded-[3rem] shadow-xl border border-gray-100 relative"
         >
-          <div class="absolute top-8 left-10 text-6xl text-blue-100 font-serif">
+          <div class="absolute top-8 left-10 text-6xl text-gray-200 font-serif">
             "
           </div>
-          <p class="text-xl text-gray-600 relative z-10">
-            "EcoLoop has transformed how we view our resource lifecycle. The AI
-            accuracy is unmatched in the market."
+          <p class="text-xl text-gray-600 relative z-10 font-light italic">
+            "By failing to recover these materials, Rwanda is forced to rely on
+            expensive raw material imports. EcoLoop changes that narrative."
+            [cite: 8]
           </p>
-          <p class="mt-6 font-bold text-gray-900">
-            — Executive Director, Kigali Waste Consortium
+          <p
+            class="mt-6 font-bold text-gray-900 uppercase tracking-widest text-xs"
+          >
+            — Problem Identification Statement
           </p>
         </div>
       </div>
@@ -312,37 +502,36 @@
 
     <section class="pb-24 pt-12 max-w-7xl mx-auto px-6">
       <div
-        class="relative bg-white border border-blue-100 shadow-2xl shadow-blue-100 rounded-[4rem] p-12 md:p-24 text-center overflow-hidden group"
+        class="relative bg-white border-2 border-gray-900 shadow-2xl shadow-gray-200 rounded-[4rem] p-12 md:p-24 text-center overflow-hidden group"
       >
-        <div
-          class="absolute top-0 right-0 w-96 h-96 bg-blue-50 rounded-full blur-[80px] -z-10 group-hover:bg-blue-100 transition-colors duration-700"
-        ></div>
-        <div
-          class="absolute bottom-0 left-0 w-96 h-96 bg-blue-50 rounded-full blur-[80px] -z-10 group-hover:bg-blue-100 transition-colors duration-700"
-        ></div>
-
         <div class="relative z-10">
           <span
-            class="text-blue-600 font-bold tracking-[0.2em] text-sm uppercase mb-6 block"
-            >Start Your Journey</span
+            class="text-gray-500 font-bold tracking-[0.2em] text-sm uppercase mb-6 block"
           >
+            Join the Circular Economy
+          </span>
           <h2
             class="text-4xl md:text-7xl font-bold text-gray-900 mb-8 tracking-tighter"
           >
-            Join the <span class="text-blue-600">Loop.</span>
+            Join the
+            <span
+              class="text-gray-900 underline decoration-4 underline-offset-8"
+              >Loop.</span
+            >
           </h2>
           <p
             class="text-gray-500 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed"
           >
-            Step into the future of waste management. Experience the financial
-            and environmental benefits of an AI-powered circular economy.
+            Recovering critical minerals for renewable infrastructure while
+            keeping our environment safe.
           </p>
 
           <a
-            href="login.html"
-            class="inline-flex items-center gap-3 bg-blue-600 text-white font-bold px-14 py-6 rounded-full text-lg hover:bg-blue-700 transition-all transform hover:-translate-y-2 shadow-lg hover:shadow-blue-200"
+            href="https://ecolooprwanda.base44.app"
+            target="_blank"
+            class="inline-flex items-center gap-3 bg-gray-900 text-white font-bold px-14 py-6 rounded-full text-lg hover:bg-black transition-all transform hover:-translate-y-2 shadow-xl"
           >
-            Get Started Now
+            Launch Web App
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -367,7 +556,7 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24">
           <div class="md:col-span-5 lg:col-span-6">
             <a href="index.html" class="flex items-center gap-3 mb-8">
-              <img src="logo.png" alt="Logo" class="h-20 w-auto" />
+              <img src="logo.png" alt="Logo" class="h-16 w-auto" />
               <span class="font-bold text-2xl tracking-tight text-gray-900"
                 >EcoLoop</span
               >
@@ -376,7 +565,7 @@
               class="max-w-sm text-gray-500 text-lg font-light leading-relaxed"
             >
               Leading the world into a circular economy through AI and IoT
-              technology. Turning your waste into financial worth.
+              technology. Turning waste into worth.
             </p>
           </div>
 
@@ -390,28 +579,28 @@
               <li>
                 <a
                   href="index.html"
-                  class="text-gray-500 hover:text-blue-600 transition text-base"
+                  class="text-gray-500 hover:text-gray-900 transition text-base"
                   >Home</a
                 >
               </li>
               <li>
                 <a
-                  href="about.html"
-                  class="text-gray-500 hover:text-blue-600 transition text-base"
+                  href="about-us.html"
+                  class="text-gray-500 hover:text-gray-900 transition text-base"
                   >About Us</a
                 >
               </li>
               <li>
                 <a
                   href="pricing.html"
-                  class="text-gray-500 hover:text-blue-600 transition text-base"
+                  class="text-gray-500 hover:text-gray-900 transition text-base"
                   >Pricing</a
                 >
               </li>
               <li>
                 <a
-                  href="Contact.html"
-                  class="text-gray-500 hover:text-blue-600 transition text-base"
+                  href="contact-us.html"
+                  class="text-gray-500 hover:text-gray-900 transition text-base"
                   >Contact Us</a
                 >
               </li>
@@ -422,28 +611,21 @@
             <h4
               class="font-bold text-gray-900 uppercase tracking-widest text-xs mb-8"
             >
-              Legal & Privacy
+              Legal
             </h4>
             <ul class="space-y-4">
               <li>
                 <a
                   href="#"
-                  class="text-gray-500 hover:text-blue-600 transition text-base"
+                  class="text-gray-500 hover:text-gray-900 transition text-base"
                   >Privacy Policy</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  class="text-gray-500 hover:text-blue-600 transition text-base"
+                  class="text-gray-500 hover:text-gray-900 transition text-base"
                   >Terms of Use</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-500 hover:text-blue-600 transition text-base"
-                  >Cookie Policy</a
                 >
               </li>
             </ul>
@@ -468,6 +650,10 @@
                 class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
               ></span>
             </span>
+            <span
+              class="text-xs text-gray-500 font-bold uppercase tracking-widest"
+              >Systems Operational</span
+            >
           </div>
         </div>
       </div>
