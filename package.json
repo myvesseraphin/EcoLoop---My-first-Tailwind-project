@@ -1,21 +1,5 @@
 {
-  "name": "ecoloop",
-  "private": true,
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
   "dependencies": {
-    "lucide-react": "^0.564.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.12.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^5.0.4",
-    "vite": "^7.3.1"
+    "openai": "^6.16.0"
   }
 }
